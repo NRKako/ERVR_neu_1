@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="images.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+	<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
+    <script src="VRController.js"></script>
+	<script src="debugout.js"></script>
+	<script src="download.js"></script>
+	<script src="jquery-3.6.0.js"></script>
+	<meta content = "text/html; charset=utf-8" http-equiv="Content-Type">
+	  <meta content = "utf-8" http-equiv="encoding">
+  </head>
+
+  <body>
+   
+    
+<a-scene id="scenes" vr-mode-ui inspector keyboard-shortcuts screenshot device-orientation-permission-ui>
+      
+	 
+	<a-assets>
+	
+		
+        <a-entity oculus-touch-controls="hand: right"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity>
+
+        <a-mixin id="FeelingsIcon" geometry="primitive:plane;height:1" material="transparent:true;shader:flat" event-set__1="_event: mouseenter; geometry.height: 1.6" event-set__2="_event: mouseleave; geometry.height: 1"></a-mixin>
+
+		<a-mixin id="TestImage" geometry="primitive:plane;height:1" material="transparent:true;shader:flat"></a-mixin>
+
+		<video id="SphereVideo" crossorigin="anonymous" autoplay loop src="https://testervr.s3.us-west-1.amazonaws.com/99chairsOffice.mp4" webkit-playsinline ></video>
+    
+      </a-assets>
+
+		
+	
+    <a-entity oculus-touch-controls="hand: right"></a-entity>
+    <a-entity laser-controls="hand: right"></a-entity>
+	
+
+
+	<a-sky id="WhiteSky" color="black" radius="50" visible="false">
+        <a-entity position="-0.449 2.336 -6.724" rotation="0 -180 0" scale="10 10 10" geometry="primitive:plane" material="transparent:true;shader:flat"></a-entity>
+	</a-sky>
+	
+	
+	<a-videosphere id="vidsphere" src="#SphereVideo" geometry="radius:500"></a-videosphere>
+	
+		<a-entity id="fixationcross" position="0 1.5 -4" scale="0 0 0" rotation="0 0 0">
+			<a-plane id = "cross" position="0 0 0" rotation="0 0 0" width="2" height=".05" color="orange"></a-plane>
+			<a-plane id = "cross" position="0 0 0" rotation="0 0 0" width=".05" height="2" color="orange"></a-plane>
+		</a-entity>
+		
+		<a-entity id="pictureboxDECREASE" position="0 2.3 -4.1" scale="0 0 0" rotation="0 0 0">
+			<a-plane id = "pbox" position="0 0 0" rotation="0 0 0" width="5.2" height="5.2" color="blue"></a-plane>
+		</a-entity>
+		
+		<a-entity id="pictureboxLOOK" position="0 2.3 -4.1" scale="0 0 0" rotation="0 0 0">
+			<a-plane id = "pbox" position="0 0 0" rotation="0 0 0" width="5.2" height="5.2" color="green"></a-plane>
+		</a-entity>
+		
+		<a-entity id="instrDECREASE" position="0 2 -4" scale="0 0 0" rotation="0 0 0">
+			<a-entity id="text" material="color:#00FF80" position="0 0 -1" scale="5 5 5" text__qtext="value:DECREASE;side:double;align:center;color:white;"></a-entity>
+		</a-entity>
+			
+		<a-entity id="instrLOOK" position="0 2 -4" scale="0 0 0" rotation="0 0 0">
+			<a-entity id="text" material="color:blue" position="0 0 -1" scale="5 5 5" text__qtext="value:LOOK;side:double;align:center;color:white;"></a-entity>
+		</a-entity>
+		
+		
+		<a-entity id="FeelingsPos" position="0 1.5 -4" scale="0 0 0" rotation="0 0 0">
+			<a-entity id="HowYaFeelingText" material="color:white" position="0 .95 -1" scale="5 5 5" text__qtext="value:How positive do you feel right now?;side:double;align:center;color:blue;"></a-entity>
+
+			<a-entity id="HowYaFeelingText2" material="color:white" position="0 .70 -1" scale="5 5 5" text__qtext="value: Not at all positive--------------------------------Very positive;side:double;align:center;color:blue;"></a-entity>
+			<a-entity id="HowYaFeelingText3" material="color:blue" position="0 0 -1" scale="5 5 5" text__qtext="value:1        2        3        4        5        6        7        8        9;side:double;align:center;color:blue;"></a-entity>
+
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p1") position="-2.3 0 -1" scale = ".5 1 1" color="#FF8C00"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p2") position="-1.725 0 -1" scale = ".5 1 1" color="#EC7F0F"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p3") position="-1.15 0 -1" scale = ".5 1 1" color="#D9711F"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p4") position="-0.575 0 -1" scale = ".5 1 1" color="#C6642E"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p5") position="0 0 -1" scale = ".5 1 1" color="#B4573D"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p6") position=".575 0 -1" scale = ".5 1 1" color="#A1494C"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p7") position="1.15 0 -1" scale = ".5 1 1" color="#8E3C5C"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p8") position="1.725 0 -1" scale = ".5 1 1" color="#7B2E6B"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p9") position="2.3 0 -1" scale = ".5 1 1" color="#68217A"></a-plane>
+        </a-entity>
+		
+		<a-entity id="FeelingsNeg" position="0 1.5 -4" scale="0 0 0" rotation="0 0 0">
+			<a-entity id="HowYaFeelingText" material="color:white" position="0 -.95 -1" scale="5 5 5" text__qtext="value:How negative do you feel right now?;side:double;align:center;color:green;"></a-entity>
+
+			<a-entity id="HowYaFeelingText2" material="color:white" position="0 -.70 -1" scale="5 5 5" text__qtext="value: Not at all negative------------------------------Very negative;side:double;align:center;color:green;"></a-entity>
+			<a-entity id="HowYaFeelingText3" material="color:green" position="0 0 -1" scale="5 5 5" text__qtext="value:1        2        3        4        5        6        7        8        9;side:double;align:center;color:green;"></a-entity>
+
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p1") position="-2.3 0 -1" scale=".5 1 1" color="#FF8C00"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p2") position="-1.725 0 -1" scale = ".5 1 1" color="#EC7F0F"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p3") position="-1.15 0 -1" scale = ".5 1 1" color="#D9711F"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p4") position="-0.575 0 -1" scale = ".5 1 1" color="#C6642E"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p5") position="0 0 -1" scale = ".5 1 1" color="#B4573D"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p6") position=".575 0 -1" scale = ".5 1 1" color="#A1494C"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p7") position="1.15 0 -1" scale = ".5 1 1" color="#8E3C5C"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p8") position="1.725 0 -1" scale = ".5 1 1" color="#7B2E6B"></a-plane>
+			<a-plane mixin="FeelingsIcon" onmousedown=bugout.log("p9") position="2.3 0 -1" scale = ".5 1 1" color="#68217A"></a-plane>
+        </a-entity>
+	
+    <a-entity camera="active: true" look-controls>
+	
+	</a-entity>																							
+		
+    </a-scene>
+
+	<script>
+	"use strict";
+    $(document).ready(function () {
+      var images = [
+    {
+        "imgNum": 0,
+        "imgName": "01-5500-LOOK.jpg",
+        "imgURL": "https://testervr.s3.us-west-1.amazonaws.com/01-5500-LOOK.jpg"
+    }, {
+        "imgNum": 1,
+        "imgName": "02-6610-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F02-6610-DECR.jpg?v=1626108876796"
+    }, {
+        "imgNum": 2,
+        "imgName": "03-9180-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F03-9180-DECR.jpg?v=1626108877095"
+    }, {
+        "imgNum": 3,
+        "imgName": "04-1280-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F04-1280-LOOK.jpg?v=1626108889229"
+    }, {
+        "imgNum": 4,
+        "imgName": "05-2710-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F05-2710-LOOK.jpg?v=1626108876879"
+    }, {
+        "imgNum": 5,
+        "imgName": "06-2095-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F06-2095-DECR.jpg?v=1626108877654"
+    }, {
+        "imgNum": 6,
+        "imgName": "07-7009-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F07-7009-LOOK.jpg?v=1626108878704"
+    }, {
+        "imgNum": 7,
+        "imgName": "08-7140-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F08-7140-LOOK.jpg?v=1626108877994"
+    }, {
+        "imgNum": 8,
+        "imgName": "09-9181-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F09-9181-LOOK.jpg?v=1626108889471"
+    }, {
+        "imgNum": 9,
+        "imgName": "10-2053-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F10-2053-LOOK.jpg?v=1626108883963"
+    }, {
+        "imgNum": 10,
+        "imgName": "11-9415-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F11-9415-DECR.jpg?v=1626108878591"
+    }, {
+        "imgNum": 11,
+        "imgName": "12-3500-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F12-3500-LOOK.jpg?v=1626108879405"
+    }, {
+        "imgNum": 12,
+        "imgName": "13-2750-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F13-2750-DECR.jpg?v=1626108883942"
+    }, {
+        "imgNum": 13,
+        "imgName": "14-9301-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F14-9301-DECR.jpg?v=1626108884502"
+    }, {
+        "imgNum": 14,
+        "imgName": "15-7150-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F15-7150-LOOK.jpg?v=1626108884878"
+    }, {
+        "imgNum": 15,
+        "imgName": "16-6212-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F16-6212-LOOK.jpg?v=1626108880235"
+    }, {
+        "imgNum": 16,
+        "imgName": "17-6242-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F17-6242-DECR.jpg?v=1626108884838"
+    }, {
+        "imgNum": 17,
+        "imgName": "18-3230-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F18-3230-LOOK.jpg?v=1626108885466"
+    }, {
+        "imgNum": 18,
+        "imgName": "19-3160-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F19-3160-DECR.jpg?v=1626108886237"
+    }, {
+        "imgNum": 19,
+        "imgName": "20-3101-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F20-3101-LOOK.jpg?v=1626108886149"
+    }, {
+        "imgNum": 20,
+        "imgName": "21-9070-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F21-9070-LOOK.jpg?v=1626108878794"
+    }, {
+        "imgNum": 21,
+        "imgName": "22-9420-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F22-9420-DECR.jpg?v=1626108880372"
+    }, {
+        "imgNum": 22,
+        "imgName": "23-6300-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F23-6300-DECR.jpg?v=1626108874925"
+    }, {
+        "imgNum": 23,
+        "imgName": "24-8475-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F24-8475-LOOK.jpg?v=1626108879486"
+    }, {
+        "imgNum": 24,
+        "imgName": "25-7500-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F25-7500-LOOK.jpg?v=1626108874972"
+    }, {
+        "imgNum": 25,
+        "imgName": "26-9800-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F26-9800-DECR.jpg?v=1626108876233"
+    }, {
+        "imgNum": 26,
+        "imgName": "27-7182-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F27-7182-LOOK.jpg?v=1626108880464"
+    }, {
+        "imgNum": 27,
+        "imgName": "28-6930-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F28-6930-DECR.jpg?v=1626108889553"
+    }, {
+        "imgNum": 28,
+        "imgName": "29-7211-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F29-7211-LOOK.jpg?v=1626108886298"
+    }, {
+        "imgNum": 29,
+        "imgName": "30-3550-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F30-3550-LOOK.jpg?v=1626108886070"
+    }, {
+        "imgNum": 30,
+        "imgName": "31-9611-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F31-9611-DECR.jpg?v=1626108880851"
+    }, {
+        "imgNum": 31,
+        "imgName": "32-7036-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F32-7036-LOOK.jpg?v=1626108885006"
+    }, {
+        "imgNum": 32,
+        "imgName": "33-7037-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F33-7037-LOOK.jpg?v=1626108881767"
+    }, {
+        "imgNum": 33,
+        "imgName": "34-6555-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F34-6555-LOOK.jpg?v=1626108886540"
+    }, {
+        "imgNum": 34,
+        "imgName": "35-6821-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F35-6821-LOOK.jpg?v=1626108887143"
+    }, {
+        "imgNum": 35,
+        "imgName": "36-7034-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F36-7034-LOOK.jpg?v=1626108881700"
+    }, {
+        "imgNum": 36,
+        "imgName": "37-9620-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F37-9620-LOOK.jpg?v=1626108882494"
+    }, {
+        "imgNum": 37,
+        "imgName": "38-6570-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F38-6570-DECR.jpg?v=1626108875645"
+    }, {
+        "imgNum": 38,
+        "imgName": "39-7002-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F39-7002-LOOK.jpg?v=1626108883194"
+    }, {
+        "imgNum": 39,
+        "imgName": "40-5970-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F40-5970-LOOK.jpg?v=1626108886966"
+    }, {
+        "imgNum": 40,
+        "imgName": "41-2691-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F41-2691-DECR.jpg?v=1626108882937"
+    }, {
+        "imgNum": 41,
+        "imgName": "42-9290-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F42-9290-LOOK.jpg?v=1626108882843"
+    }, {
+        "imgNum": 42,
+        "imgName": "43-6150-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F43-6150-LOOK.jpg?v=1626108887161"
+    }, {
+        "imgNum": 43,
+        "imgName": "44-6530-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F44-6530-DECR.jpg?v=1626108887125"
+    }, {
+        "imgNum": 44,
+        "imgName": "45-2141-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F45-2141-LOOK.jpg?v=1626108887889"
+    }, {
+        "imgNum": 45,
+        "imgName": "46-5731-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F46-5731-LOOK.jpg?v=1626108884318"
+    }, {
+        "imgNum": 46,
+        "imgName": "47-7040-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F47-7040-LOOK.jpg?v=1626108875577"
+    }, {
+        "imgNum": 47,
+        "imgName": "48-6831-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F48-6831-DECR.jpg?v=1626108877181"
+    }, {
+        "imgNum": 48,
+        "imgName": "49-6312-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F49-6312-LOOK.jpg?v=1626108877348"
+    }, {
+        "imgNum": 49,
+        "imgName": "50-2752-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F50-2752-LOOK.jpg?v=1626108876817"
+    }, {
+        "imgNum": 50,
+        "imgName": "51-7170-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F51-7170-LOOK.jpg?v=1626108887851"
+    }, {
+        "imgNum": 51,
+        "imgName": "52-7283-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F52-7283-LOOK.jpg?v=1626108888463"
+    }, {
+        "imgNum": 52,
+        "imgName": "53-9622-DECR.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F53-9622-DECR.jpg?v=1626108888478"
+    }, {
+        "imgNum": 53,
+        "imgName": "54-6415-LOOK.jpg",
+        "imgURL": "https://cdn.glitch.com/e5017567-529f-41f0-9f64-bb3a41395ffd%2F54-6415-LOOK.jpg?v=1626108888407"
+    }
+]
+	
+		var video = document.getElementById('vidsphere');
+		video.play();
+		
+		var bugout = new debugout();
+		setTimeout(startTest, 30 * 1000);
+		//Change second number equal to the number of seconds the video will last for.
+		
+		//#9
+		function showCross(){
+			var fixcross = document.getElementById('fixationcross');
+			fixcross.setAttribute('scale', '1 1 1');
+			setTimeout(hideCross, 9 * 1000);
+		}
+		
+		//#10
+		function hideCross(){
+			var fixcross = document.getElementById('fixationcross');
+			fixcross.setAttribute('scale', '0 0 0');
+		}
+		
+		//#1
+		function instruct(img, num){
+			var rnum = Math.floor(Math.random()*2);
+			var skybox = document.getElementById('WhiteSky');
+			var task = namelist[num-1].substring(namelist[num-1].length-4,namelist[num-1].length);
+      console.log("task", task)
+			if (task == 'LOOK'){
+				bugout.log('LOOK');
+				skybox.setAttribute('color', 'green');
+				var look = document.getElementById('instrLOOK');
+				look.setAttribute('scale', '5 5 5');
+				setTimeout(function() {hideInstruct(img, num, 'LOOK');}, 2 * 1000);
+			}
+			else{
+				bugout.log('DECREASE');
+				skybox.setAttribute('color', 'blue');
+				var decrease = document.getElementById('instrDECREASE');
+				decrease.setAttribute('scale', '5 5 5');
+				setTimeout(function() {hideInstruct(img, num, 'DECREASE');}, 2 * 1000);
+			}
+		}
+		
+		//#2
+		function hideInstruct(img, num, inst){
+			var skybox = document.getElementById('WhiteSky');
+			skybox.setAttribute('color', 'black');
+			var insttxt = document.getElementById('instr' + inst);
+			insttxt.setAttribute('scale', '0 0 0');
+			showPicture(img, num, inst)
+		}
+		
+		//#6
+		function hideRatingNeg(num) {
+			var feelindicator = document.getElementById('FeelingsNeg');
+			feelindicator.setAttribute('scale', '0 0 0');
+			showRatingPos(num);
+		}
+
+		//#5
+		function showRatingNeg(num) {
+			bugout.log('Negative Rating Image ' + num); 
+			var feelindicator = document.getElementById('FeelingsNeg');
+			feelindicator.setAttribute('scale', '1 1 1');
+			setTimeout(function() {hideRatingNeg(num);}, 3 * 1000);
+		}
+
+		//#8
+		function hideRatingPos() {
+			var feelindicator = document.getElementById('FeelingsPos');
+			feelindicator.setAttribute('scale', '0 0 0');
+			showCross();
+		}
+
+		//#7
+		function showRatingPos(num) {
+			bugout.log('Positive Rating Image ' + num); 
+			var feelindicator = document.getElementById('FeelingsPos');
+			feelindicator.setAttribute('scale', '1 1 1');
+			setTimeout(hideRatingPos, 3 * 1000);
+		}		
+		
+
+		//#4
+		function hidePicture(img, num, inst) {
+			var picture = document.getElementById(String(img));
+			var pictureborder = document.getElementById('picturebox' + inst);
+			picture.setAttribute('scale', '0 0 0');
+			pictureborder.setAttribute('scale', '0 0 0');
+			showRatingNeg(num)
+		}
+
+		//#3
+		function showPicture(img, num, inst){			
+			var pictureholder = document.getElementById(img.toString());	
+			var pictureborder = document.getElementById('picturebox' + inst);
+			pictureholder.setAttribute('scale', '5 5 5');
+			pictureborder.setAttribute('scale', '1.2 1.2 1.2');				
+
+			setTimeout(function() {hidePicture(img, num, inst);}, 8 * 1000);
+		}
+		
+		var namelist = [];
+		var picturelist = [];
+		var picnum = 0;
+		function startTest(){	
+			// $.ajax({
+			// 	url : "/assets/",
+			// // async: false,
+			// 	success: function (data) {
+			// 		$(data).find("a").attr("href", function (i, val) {
+			// console.log(val)
+			// 			if( val.match(/.(jpe?g|png|gif)$/) ) { 							
+			// 				$('a-assets').append( "<img id ='k" + i + "' crossorigin='anonymous' preload='auto' src='/assets/" + val + "'>" );
+			// 				$('a-scene').append("<a-entity id='p" + i + "' position='0 1 -4' scale='0 0 0' rotation='0 0 0'><a-entity mixin='TestImage' position='0 0.25 0' scale = '1 1 1' material='src:#k" + i + ";'></a-entity> </a-entity>");
+			// 				let temp = "p" + picnum;
+			// 				picturelist.push(temp);
+			// 				namelist.push(val);
+			// 				picnum++;
+			// 			} 
+			// 		});
+			// 	}
+			// });
+      
+      images.forEach(img => {
+        $('a-assets').append( `<img id ='k${img.imgNum}' crossorigin='anonymous' preload='auto' src='${img.imgURL}'>` );
+        $('a-scene').append(`<a-entity id='p${img.imgNum}' position='0 1 -4' scale='0 0 0' rotation='0 0 0'><a-entity mixin='TestImage' position='0 0.25 0' scale = '1 1 1' material='src:#k${img.imgNum};'></a-entity> </a-entity>`);
+        // let temp = "p" + picnum;
+        picturelist.push(`p${img.imgNum}`);
+        namelist.push(img.imgName.substring(0, img.imgName.length-4));
+        picnum++;
+      })
+      console.log("picture list: ", picturelist, "name list: ", namelist)
+      
+			
+		
+			//pause video
+			// var video = document.getElementById('SphereVideo');
+			video.pause()
+			//hide video with skybox
+			var skybox = document.getElementById('WhiteSky');
+			skybox.setAttribute('color', 'black');
+			skybox.setAttribute('visible', 'true');
+			
+			//needs some delay to allow images to be added to the list
+			setTimeout(startToo, 1000);
+		}
+    
+    var video = document.getElementById('SphereVideo');
+    video.onpause = () => {
+<!--       video.play() -->
+    }
+		 
+		function startToo(){
+			picturelist.forEach(function(element){ 
+					//this is the timeout for setting each new picture cycle. currently set to 25 second test cycles.
+					setTimeout(function(){instruct(element, picturelist.indexOf(element)+1);}, 25 * (picturelist.indexOf(element)+1) * 1000);
+				})
+			//each test takes 25 seconds, with no delay in between. need an extra 25 seconds at the end for the last test to complete.
+			setTimeout(function() { alert("This is the end of the VR task. Please save the data.");}, (picnum * 25 * 1000) + 25000);
+		}
+		
+		//Below this point contains the method for ending the test and giving the data
+		var nativeAlert = window.alert;
+
+		window.alert = function(msg) {
+			nativeAlert(msg);
+			bugout.log('End Of Experiment');
+
+			var currLog = bugout.getLog();
+			download(currLog, "VRData.txt");
+		};
+			
+		
+		});
+	</script>
+	
+	</body>
+
+</html>
+
+
+
+
+
+}
