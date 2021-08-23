@@ -23,8 +23,8 @@
 	<a-assets>
 	
 		
-        <a-entity oculus-touch-controls="hand: right"></a-entity>
-        <a-entity laser-controls="hand: right"></a-entity>
+        <!-- <a-entity oculus-touch-controls="hand: right"></a-entity>
+        <a-entity laser-controls="hand: right"></a-entity> -->
 
         <a-mixin id="FeelingsIcon" geometry="primitive:plane;height:1" material="transparent:true;shader:flat" event-set__1="_event: mouseenter; geometry.height: 1.6" event-set__2="_event: mouseleave; geometry.height: 1"></a-mixin>
 
@@ -36,9 +36,9 @@
 
 		
 	
-    <a-entity oculus-touch-controls="hand: right"></a-entity>
-    <a-entity laser-controls="hand: right"></a-entity>
-	
+    <!-- <a-entity oculus-touch-controls="hand: right"></a-entity>
+    <a-entity laser-controls="hand: right"></a-entity> -->
+	<a-entity oculus-touch-controls laser-controls="hand: right"></a-entity>
 
 
 	<a-sky id="WhiteSky" color="black" radius="50" visible="false">
@@ -469,7 +469,7 @@
 			
 		
 			//pause video
-			// var video = document.getElementById('SphereVideo');
+			var video = document.getElementById('SphereVideo');
 			video.pause()
 			//hide video with skybox
 			var skybox = document.getElementById('WhiteSky');
