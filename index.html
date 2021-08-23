@@ -4,7 +4,6 @@
 
   <head>
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <script src="images.js"></script>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 	<script src="https://npmcdn.com/aframe-event-set-component@3.0.1"></script>
     <script src="VRController.js"></script>
@@ -113,7 +112,7 @@
 
 	<script>
 	"use strict";
-    $(document).ready(function () {
+    // $(document).ready(function () {
       var images = [
     {
         "imgNum": 0,
@@ -481,10 +480,6 @@
 			setTimeout(startToo, 1000);
 		}
     
-    var video = document.getElementById('SphereVideo');
-    video.onpause = () => {
-<!--       video.play() -->
-    }
 		 
 		function startToo(){
 			picturelist.forEach(function(element){ 
@@ -507,15 +502,9 @@
 		};
 			
 		
-		});
+		// });
 	</script>
 	
 	</body>
 
 </html>
-
-
-
-
-
-}
